@@ -1,3 +1,5 @@
+package stacksandqueues;
+
 /**
  * Created by abhishek on 08/11/18.
  */
@@ -9,7 +11,7 @@ public class Stack<T> {
     }
 
     public T peek() {
-        if (isEmpty()) throw new RuntimeException("Stack is empty");
+        if (isEmpty()) throw new RuntimeException("stacksandqueues.Stack is empty");
         return top.data;
     }
 
@@ -22,7 +24,7 @@ public class Stack<T> {
     }
 
     public T pop() {
-        if (isEmpty()) throw new RuntimeException("Stack is empty");
+        if (isEmpty()) throw new RuntimeException("stacksandqueues.Stack is empty");
         T data = top.data;
         top = top.next;
         return data;

@@ -1,3 +1,5 @@
+package stacksandqueues;
+
 /**
  * Created by abhishek on 08/11/18.
  */
@@ -10,7 +12,7 @@ public class Queue<T> {
     }
 
     public T peek() {
-        if (isEmpty()) throw new RuntimeException("Queue is empty!");
+        if (isEmpty()) throw new RuntimeException("stacksandqueues.Queue is empty!");
         return front.data;
     }
 
@@ -26,7 +28,7 @@ public class Queue<T> {
     }
 
     public T dequeue() {
-        if (isEmpty()) throw new RuntimeException("Queue is empty!");
+        if (isEmpty()) throw new RuntimeException("stacksandqueues.Queue is empty!");
         T data = front.data;
         if (front == back) {
             back = null;

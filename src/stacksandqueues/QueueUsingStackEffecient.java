@@ -1,3 +1,5 @@
+package stacksandqueues;
+
 /**
  * Uses a push stack for enqueing and pop stack for peeking and dequeing.
  * 1. Enqueue: i) Push to push stack
@@ -17,7 +19,7 @@ public class QueueUsingStackEffecient<T> {
     }
 
     public T peek() {
-        if (isEmpty()) throw new RuntimeException("Queue is empty!");
+        if (isEmpty()) throw new RuntimeException("stacksandqueues.Queue is empty!");
         return popStack.peek();
     }
 
@@ -31,7 +33,7 @@ public class QueueUsingStackEffecient<T> {
     }
 
     public T dequeue() {
-        if (isEmpty()) throw new RuntimeException("Queue is empty!");
+        if (isEmpty()) throw new RuntimeException("stacksandqueues.Queue is empty!");
         T data = popStack.pop();
         if (popStack.isEmpty()) {
             while (!pushStack.isEmpty()) {

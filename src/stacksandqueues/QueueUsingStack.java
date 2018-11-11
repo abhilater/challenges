@@ -1,3 +1,5 @@
+package stacksandqueues;
+
 /**
  *  Uses a back stack with LIFO order and front stack with FIFO order
  *  i) When dequeue or peek is done on back stack, it transfers all to front
@@ -14,7 +16,7 @@ public class QueueUsingStack<T> {
     }
 
     public T peek() {
-        if (isEmpty()) throw new RuntimeException("Queue is empty!");
+        if (isEmpty()) throw new RuntimeException("stacksandqueues.Queue is empty!");
         if (isBack) {
             while (!back.isEmpty()) {
                 front.push(back.pop());
@@ -36,7 +38,7 @@ public class QueueUsingStack<T> {
     }
 
     public T dequeue() {
-        if (isEmpty()) throw new RuntimeException("Queue is empty!");
+        if (isEmpty()) throw new RuntimeException("stacksandqueues.Queue is empty!");
         if (isBack) {
             while (!back.isEmpty()) {
                 front.push(back.pop());

@@ -1,3 +1,5 @@
+package stacksandqueues;
+
 /**
  * Created by abhishek on 08/11/18.
  */
@@ -12,7 +14,7 @@ public class Node<T> {
 
     @Override
     public String toString() {
-        return "Node{" +
+        return "stacksandqueues.Node{" +
                 "data=" + data +
                 ", next=" + next +
                 '}';
