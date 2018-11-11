@@ -148,6 +148,10 @@ public class Sorting {
         }
     }
 
+    static void countingSort(Integer[] array, int min, int max){
+
+    }
+
     private static void swap(Integer[] array, int idx1, int idx2) {
         int t = array[idx1];
         array[idx1] = array[idx2];
