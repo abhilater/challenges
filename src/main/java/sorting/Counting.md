@@ -16,7 +16,7 @@ duplicated “count” array.
 ![](https://cdn-images-1.medium.com/max/600/1*JDUtBNVSdcnPo13ZVjLJ-A.jpeg)<br><br>
 ![](https://cdn-images-1.medium.com/max/600/1*hD9c_JW2GE7dw_BhO_RBZw.jpeg)<br><br>
 
-```json
+```javascript
 function countingSort(array, minimumValue, maximumValue) {
   var z = 0;
   var count = [];
