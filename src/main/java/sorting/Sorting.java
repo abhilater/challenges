@@ -29,10 +29,10 @@ public class Sorting {
     }
 
     static void bubbleSort(Integer[] array) {
-        for(int j = array.length - 1; j > 0; j--){
-            for(int i = 0 ; i < j; i++){
-                if(array[i] > array[i+1]){
-                    swap(array, i, i+1);
+        for (int j = array.length - 1; j > 0; j--) {
+            for (int i = 0; i < j; i++) {
+                if (array[i] > array[i + 1]) {
+                    swap(array, i, i + 1);
                 }
             }
         }
@@ -50,8 +50,8 @@ public class Sorting {
         }
     }
 
-    static void mergeSort(Integer[] array){
-        if(array.length <= 1) return;
+    static void mergeSort(Integer[] array) {
+        if (array.length <= 1) return;
 
         int n = array.length / 2;
         List<Integer> l = Arrays.asList(array);
@@ -82,38 +82,71 @@ public class Sorting {
         }
     }
 
-    static void quickSort(Integer[] array, int leftIdx, int rightIdx){
-        if(array.length < 2) return;
+    static void quickSort(Integer[] array, int leftIdx, int rightIdx) {
+        if (array.length < 2) return;
         int pivot = partition(array, leftIdx, rightIdx);
 
         // If the left reference hasn't been incremented to
         // reach the pivot yet, we want to keep comparing it.
-        if(leftIdx < pivot - 1) quickSort(array, leftIdx, pivot - 1);
+        if (leftIdx < pivot - 1) quickSort(array, leftIdx, pivot - 1);
 
         // If the right reference hasn't reached the
         // pivotIndex yet, we need to keep comparing it.
-        if(rightIdx > pivot) quickSort(array, pivot, rightIdx);
+        if (rightIdx > pivot) quickSort(array, pivot, rightIdx);
     }
 
-    static int partition(Integer[] array, int leftIdx, int rightIdx){
-        int pivot = array[(leftIdx + rightIdx)/2];
+    static int partition(Integer[] array, int leftIdx, int rightIdx) {
+        int pivot = array[(leftIdx + rightIdx) / 2];
 
         // Once the left reference is greater than the right reference,
         // we have finished sorting this set of items, and we can return.
-        while(leftIdx <= rightIdx){
-            while(array[leftIdx] < pivot) leftIdx++;
-            while(array[rightIdx] > pivot) rightIdx--;
+        while (leftIdx <= rightIdx) {
+            while (array[leftIdx] < pivot) leftIdx++;
+            while (array[rightIdx] > pivot) rightIdx--;
 
             // If the left pointer is larger than the pivot, and the right
             // pointer is not bigger than the pivot, swap the two elements.
-            if(leftIdx <= rightIdx){
+            if (leftIdx <= rightIdx) {
                 swap(array, leftIdx, rightIdx);
-                leftIdx++; rightIdx--;
+                leftIdx++;
+                rightIdx--;
             }
         }
         return leftIdx;
     }
 
+    static void heapSort(Integer[] array) {
+        buildMaxHeap(array);
+        int lastElement = array.length - 1;
+
+        while (lastElement > 0) {
+            swap(array, 0, lastElement);
+            maxHeapify(array, 0, lastElement);
+            lastElement--;
+        }
+    }
+
+    static void buildMaxHeap(Integer[] array) {
+        // heapify only non-leaf nodes
+        int i = (array.length - 1) / 2;
+        while (i >= 0) {
+            maxHeapify(array, i, array.length);
+            i--;
+        }
+    }
+
+    static void maxHeapify(Integer[] array, int i, int n) {
+        int maxIdx = i;
+        int l = 2 * i + 1; // left = 2*i + 1
+        int r = 2 * i + 2; // right = 2*i + 2
+        if (l < n && array[l] > array[maxIdx]) maxIdx = l;
+        if (r < n && array[r] > array[maxIdx]) maxIdx = r;
+        // If largest is not root
+        if (maxIdx != i) {
+            swap(array, i, maxIdx);
+            maxHeapify(array, maxIdx, n);
+        }
+    }
 
     private static void swap(Integer[] array, int idx1, int idx2) {
         int t = array[idx1];
@@ -154,6 +187,12 @@ public class Sorting {
     @Property
     public void testQuickSort(Integer[] array) {
         quickSort(array, 0, array.length - 1);
+        Assert.assertTrue(isArraySorted(array, array.length));
+    }
+
+    @Property
+    public void testHeapkSort(Integer[] array) {
+        heapSort(array);
         Assert.assertTrue(isArraySorted(array, array.length));
     }
 
