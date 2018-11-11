@@ -1,7 +1,5 @@
 # Sorting Algorithms
 
-## Concept
-
 ### Classification
 ![](https://cdn-images-1.medium.com/max/1600/1*gyFGnj6fz08wvonmRf3cIg.jpeg)
 
@@ -15,9 +13,8 @@
 
 ![](https://cdn-images-1.medium.com/max/1600/1*OWZF2CMe2KV1grxNwcdZ9Q.jpeg)
 
-### Algorithms
 
-#### Selection Sort
+### Selection Sort
 ![](https://cdn-images-1.medium.com/max/1600/1*O6OmnV8MZ7Pdyvt1-xBTxw.jpeg)
 ![](https://cdn-images-1.medium.com/max/1200/1*PCWPy55bEEZon1uNXunELw.jpeg)
 ![](https://cdn-images-1.medium.com/max/1600/1*MJ1hJLG58QS8REhXkuo_Hg.jpeg)
@@ -38,7 +35,7 @@ static void selectionSort(Integer[] array) {
 }
 ```
 
-#### Bubble sort
+### Bubble sort
 ![](https://cdn-images-1.medium.com/max/1600/1*gxRwophEo5u22AaSgt8JXg.jpeg)
 ![](https://cdn-images-1.medium.com/max/1200/1*0G-HWCiByHVPedrKXwS8iQ.jpeg)
 
@@ -54,7 +51,7 @@ static void bubbleSort(Integer[] array) {
 }
 ```
 
-#### Insertion sort
+### Insertion sort
 ![](https://cdn-images-1.medium.com/max/1600/1*_W4xVv1FM3wEDZg16kvb1w.jpeg)
 ![](https://cdn-images-1.medium.com/max/1200/1*NDDPPmfZx-l4dzHZw-bTmg.jpeg)
 
@@ -71,13 +68,15 @@ static void insertionSort(Integer[] array) {
     }
 }
 ```
-**Note:** The best case running time of running an insertion sort algorithm on a nearly-sorted list ends up being linear — or, O(n) — since far fewer comparisons need to be made by the inner loop.
+**Note:** The best case running time of running an insertion sort algorithm on a nearly-sorted 
+list ends up being linear — or, O(n) — since far fewer comparisons need to be made by the inner loop.
 ![](https://cdn-images-1.medium.com/max/1600/1*7fLrgRmyYRkEKQ1C4YRKqw.jpeg)
 
-#### Merge sort
+### Merge sort
 ![](https://cdn-images-1.medium.com/max/1600/1*T4lE_CveG7rAkEziwKtpAw.jpeg)
 
-**The basic idea behind merge sort is this: it tends to be a lot easier to sort two smaller, sorted lists rather than sorting a single large, unsorted one.**
+**The basic idea behind merge sort is this: it tends to be a lot easier to sort two smaller, 
+sorted lists rather than sorting a single large, unsorted one.**
 
 ![](https://cdn-images-1.medium.com/max/1200/1*ZFpPwH6_ssRu5p8tM9T-vQ.jpeg)
 ![](https://cdn-images-1.medium.com/max/1600/1*p6pvuQ0mKCYkx3ZXv6ufgw.jpeg)
@@ -118,3 +117,85 @@ static void merge(Integer[] la,
     }
 }
 ```
+![](https://cdn-images-1.medium.com/max/1600/1*rC_8BDfA-DzTsqMd4LSDhw.jpeg)
+![](https://cdn-images-1.medium.com/max/1200/1*lc4AdXu_5iTxJGNqphsK1Q.jpeg)
+
+Standard merge sort algorithm requires a temporary array structure in order to sort and append 
+elements. In other words, it requires a constant, or O(n), amount of space — the memory needed 
+for the temporary buffer array. Merge sort needs O(n) amount of memory in order to copy over 
+elements as it sorts. This is probably the greatest drawback of the merge sort algorithm: 
+it is an out-of-place sorting algorithm, that requires additional memory as its dataset grows.
+
+![](https://cdn-images-1.medium.com/max/1600/1*gBcFx-WSaAaMdA0sIsm0wA.jpeg)
+
+**Note:** Because merge sort is often implemented as an external sorting algorithm, it can do 
+the work of sorting outside of main memory, and then later can pull the sorted data back into the internal, main memory.
+
+**Bulb** 
+
+Both Java and Python, for example, implement **Timsort**, which is a hybrid of insertion sort and 
+merge sort, under the hood of their sorting methods.
+It knows to use insertion sort for smaller arrays, and merge sort for larger ones.
+
+### Quick Sort
+![](https://cdn-images-1.medium.com/max/1600/1*naIVyW99FsqfTZhw06YJ0g.jpeg)
+![](https://cdn-images-1.medium.com/max/1600/1*sNTntI4oR51kdp9-CQEqxg.jpeg)
+![](https://cdn-images-1.medium.com/max/1200/1*rjpGqzlhNO8SdqgQYAp76w.jpeg)
+![](https://cdn-images-1.medium.com/max/1200/1*md0dT0BAlkRiWlWnbH61GQ.jpeg)
+![](https://cdn-images-1.medium.com/max/1200/1*d5Ampu8dRE_N0X3MLcGBOw.jpeg)
+
+One thought we might have here is that quicksort just creates a whole new array and copies over 
+the elements in the correct order — right? Well, not exactly. One of the many reasons that quicksort 
+is a preferred algorithm is because it doesn’t take up a ton of extra space as it sorts! 
+This means that it doesn’t have the luxury of being able to create a duplicated array, 
+because that would take up a lot of space and memory.
+
+![](https://cdn-images-1.medium.com/max/1200/1*VRpkrRX_WdPnH3duP0Ak_A.jpeg)
+![](https://cdn-images-1.medium.com/max/1200/1*sxpPWeeEHFmFh9dL3C0J8Q.jpeg)
+
+**Choosing the pivot**
+
+![](https://cdn-images-1.medium.com/max/1200/1*AuOVk7USUwVhrbmejkg5sQ.jpeg)
+![](https://cdn-images-1.medium.com/max/1600/1*sYvLxsc-TZTnbA9oPoPSyw.jpeg)
+
+```java
+static void quickSort(Integer[] array, int leftIdx, int rightIdx){
+    if(array.length < 2) return;
+    int pivot = partition(array, leftIdx, rightIdx);
+    
+    // If the left reference hasn't been incremented to
+    // reach the pivot yet, we want to keep comparing it.
+    if(leftIdx < pivot - 1) quickSort(array, leftIdx, pivot - 1);
+    
+    // If the right reference hasn't reached the
+    // pivotIndex yet, we need to keep comparing it.
+    if(rightIdx > pivot) quickSort(array, pivot, rightIdx);
+}
+
+static int partition(Integer[] array, int leftIdx, int rightIdx){
+    int pivot = array[(leftIdx + rightIdx)/2];
+    
+    // Once the left reference is greater than the right reference,
+    // we have finished sorting this set of items, and we can return.
+    while(leftIdx <= rightIdx){
+        while(array[leftIdx] < pivot) leftIdx++;
+        while(array[rightIdx] > pivot) rightIdx--;
+        
+        // If the left pointer is larger than the pivot, and the right
+        // pointer is not bigger than the pivot, swap the two elements.
+        if(leftIdx <= rightIdx){
+            swap(array, leftIdx, rightIdx);
+            leftIdx++; rightIdx--;
+        }
+    }
+    return leftIdx;
+}
+```
+
+**Quicksort has one major difference with merge sort, and this ends up being a 
+defining point between these otherwise super-similar algorithms. This is the 
+fact that quicksort is an unstable algorithm. Stability ends up being what causes 
+people to choose merge sort over quicksort, and it’s the one area where merge sort 
+appears as the obvious winner.**
+
+![](https://cdn-images-1.medium.com/max/1200/1*BjEafvcnl_p3mi1sOBcsgw.jpeg)

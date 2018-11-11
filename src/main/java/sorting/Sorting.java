@@ -82,6 +82,38 @@ public class Sorting {
         }
     }
 
+    static void quickSort(Integer[] array, int leftIdx, int rightIdx){
+        if(array.length < 2) return;
+        int pivot = partition(array, leftIdx, rightIdx);
+
+        // If the left reference hasn't been incremented to
+        // reach the pivot yet, we want to keep comparing it.
+        if(leftIdx < pivot - 1) quickSort(array, leftIdx, pivot - 1);
+
+        // If the right reference hasn't reached the
+        // pivotIndex yet, we need to keep comparing it.
+        if(rightIdx > pivot) quickSort(array, pivot, rightIdx);
+    }
+
+    static int partition(Integer[] array, int leftIdx, int rightIdx){
+        int pivot = array[(leftIdx + rightIdx)/2];
+
+        // Once the left reference is greater than the right reference,
+        // we have finished sorting this set of items, and we can return.
+        while(leftIdx <= rightIdx){
+            while(array[leftIdx] < pivot) leftIdx++;
+            while(array[rightIdx] > pivot) rightIdx--;
+
+            // If the left pointer is larger than the pivot, and the right
+            // pointer is not bigger than the pivot, swap the two elements.
+            if(leftIdx <= rightIdx){
+                swap(array, leftIdx, rightIdx);
+                leftIdx++; rightIdx--;
+            }
+        }
+        return leftIdx;
+    }
+
 
     private static void swap(Integer[] array, int idx1, int idx2) {
         int t = array[idx1];
@@ -116,6 +148,12 @@ public class Sorting {
     @Property
     public void testMergeSort(Integer[] array) {
         mergeSort(array);
+        Assert.assertTrue(isArraySorted(array, array.length));
+    }
+
+    @Property
+    public void testQuickSort(Integer[] array) {
+        quickSort(array, 0, array.length - 1);
         Assert.assertTrue(isArraySorted(array, array.length));
     }
 
