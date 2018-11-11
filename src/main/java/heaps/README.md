@@ -17,11 +17,11 @@
 
 ![](https://cdn-images-1.medium.com/max/1200/1*5mhwGo-y-Zw3X2a2l446Qw.jpeg)
 
-> ###Heaps are often implemented as arrays because they are super efficient ways of representing priority queues.
+> ## Heaps are often implemented as arrays because they are super efficient ways of representing priority queues.
 
 ![](https://cdn-images-1.medium.com/max/1600/1*4rG1Dxt18Y5p0FefQDf-1A.jpeg)
 
-## Heap Sort
+# Heap Sort
 
 ![](https://cdn-images-1.medium.com/max/1600/1*gL7afN4ItGy5oE409q0DVg.jpeg)
 and sequentially sort elements by selecting the root node of a heap, and adding it to the end of the array.
@@ -32,7 +32,7 @@ and sequentially sort elements by selecting the root node of a heap, and adding 
 ![](https://cdn-images-1.medium.com/max/1600/1*Km1jk3hsH2cc751KKY41EA.jpeg)
 ![](https://cdn-images-1.medium.com/max/1600/1*RUt3itnTRK00-q3mek8F6g.jpeg)
 
-> ##You’ll remember that heap sort has two important parts to it: buildMaxHeap and heapify. 
+> ## You’ll remember that heap sort has two important parts to it: buildMaxHeap and heapify. 
 We can see them in action in the version of heapSort below.
 
 ```java
