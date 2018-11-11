@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 /**
  * Created by abhishek on 09/11/18.
  */
-public class Solution {
+public class HuffmanDecoder {
 
     // input is an array of frequencies, indexed by character code
 
