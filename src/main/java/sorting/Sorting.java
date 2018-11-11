@@ -148,8 +148,20 @@ public class Sorting {
         }
     }
 
-    static void countingSort(Integer[] array, int min, int max){
+    static void countingSort(Integer[] array, int min, int max) {
+        int z = 0;
+        Integer[] count = new Integer[max+1];
+        for (int i = min; i <= max; i++) count[i] = 0;
 
+        for (int i = 0; i < array.length; i++) {
+            count[array[i]]++;
+        }
+        // Modify array and move elements into their sorted location.
+        for(int i = min; i <= max; i++){
+            while(count[i]-- > 0){
+                array[z++] = i;
+            }
+        }
     }
 
     private static void swap(Integer[] array, int idx1, int idx2) {
@@ -205,19 +217,19 @@ public class Sorting {
         Integer[] b = {1};
         Integer[] c = {1, 2, 3};
         Integer[] d = {3, 2, 1};
-        Integer[] e = {5, 3, 6, 5, 0, -8, 99, 1};
-        Integer[] f = {0, 5, 0, -5};
-        //mergeSort(a);
-        //mergeSort(b);
-        mergeSort(c);
-        //mergeSort(d);
-        //mergeSort(e);
-        //mergeSort(f);
-        //System.out.println(Arrays.asList(a));
-        //System.out.println(Arrays.asList(b));
+        Integer[] e = {5, 3, 6, 5, 0, 8, 99, 1};
+        Integer[] f = {0, 5, 0, 5};
+        countingSort(a, 0, 99);
+        countingSort(b, 0, 99);
+        countingSort(c, 0, 99);
+        countingSort(d, 0, 99);
+        countingSort(e, 0, 99);
+        countingSort(f, 0, 99);
+        System.out.println(Arrays.asList(a));
+        System.out.println(Arrays.asList(b));
         System.out.println(Arrays.asList(c));
-        //System.out.println(Arrays.asList(d));
-        //System.out.println(Arrays.asList(e));
-        //System.out.println(Arrays.asList(f));
+        System.out.println(Arrays.asList(d));
+        System.out.println(Arrays.asList(e));
+        System.out.println(Arrays.asList(f));
     }
 }
