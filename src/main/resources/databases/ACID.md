@@ -73,3 +73,7 @@ transactions don't have to wait on lock like 2PL
 ![Imgur](https://i.imgur.com/BSWBJDwl.jpg)
 
 ![Imgur](https://i.imgur.com/qaVxtGrl.jpg)
+
+> ### So 2PL is Pessimistic locking where we don't allow a scenario where there can be conflict while SSI is an Optimistic 
+locking where we allow conflicts to happen and abort and retry when conflict is detected, works well if contention is not too
+high or else there are lots of transactions retry and things become not so good.
