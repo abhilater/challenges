@@ -1,4 +1,5 @@
 # Is Kafka a Database?
+### Notes from an awesome keynote talk by Martin Kleppmann at Kakfka Summit 2018
 
 # ACID
 
