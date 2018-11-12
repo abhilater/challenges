@@ -1,4 +1,0 @@
-# Distributed Transactions
-
-All the transactions properties we have seen so far work across the confines of a single database in a single machine.
-What about transaction across distributed microservies and even
