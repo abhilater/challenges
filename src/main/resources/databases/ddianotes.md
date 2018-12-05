@@ -10,6 +10,9 @@ Designing data-intensive applications Notes
     - [Symptoms of Complexity](#symptoms-of-complexity)
   - [Evolvability](#evolvability)
 - [Security & Compliance](#security---compliance)
+- [Data Models & Query Languages](#data-models---query-languages)
+  - [Data Models](#data-models)
+  - [Declarative Query languages](#declarative-query-languages)
 
 Introduction
 ==============
@@ -96,10 +99,10 @@ Data Models & Query Languages
 * Engineers decide how to serialize these data in memory/disk/network to query/search/modify it in various ways
 * Hardware engineers decide how to represet bytes as electrical currents, pulses of light, magnetic field etc
 
-Document(Hierarchical)/ Relational(SQL)/ Network(similar to Graph) Models
+Data Models
 ==========================================================================
 
-* Document model - schema flexibility, better performance due to locality, and that for some applications it is closer to the data structures used by the application
+* **Document** - schema flexibility, better performance due to locality, and that for some applications it is closer to the data structures used by the application **data comes in self-contained documents and relationships between one document and another are rare**
   * If data has a document-like structure (i.e., a tree of one-to-many relationships, where typically the entire tree is loaded at once), then it’s probably a good idea to use a document model
   * The relational technique of splitting a document-like structure into multiple tables (like positions, education, and contact_info lead to cumbersome schemas and unnecessarily complicated application code.
   * Poor support for joins in document databases may or may not be a problem, depending on the application eg Analytics
@@ -112,11 +115,26 @@ Document(Hierarchical)/ Relational(SQL)/ Network(similar to Graph) Models
     user.first_name = user.name.split(" ")[0];} 
   ```
 
-* The relational model counters by providing better support for joins, and many-to-one and many-to-many relationships.
+* **Relational** counters by providing better support for joins, and many-to-one and many-to-many relationships.
   * For highly interconnected data, the document model is awkward, the relational model is acceptable, and graph models are natural
   * **Schema-on-write** is similar to static (compile-time) type checking
   ```java
    ALTER TABLE users ADD COLUMN first_name text;
    UPDATE users SET first_name = split_part(name, ' ', 1);      -- PostgreSQL”
   ```
- 
+* **Graph** - The relational model can handle simple cases of many-to-many relationships, but as the connections within your data become more complex, it becomes more natural to start modeling your data as a graph. **targeting use cases where anything is potentially related to everything**
+  * Two kinds of objects: vertices (also known as nodes or entities) and edges (also known as relationships or arcs)
+  * Social graphs - vertices of peoples, edges -> people know each other
+  * Road/Rail network - vertices are junctions, edges -> road/rail lines between them
+  * Well-known algorithms can operate on these graphs
+    * for example, car navigation systems search for the shortest path between two points in a road network, and PageRank can be used on the web graph to determine the popularity of a web page and thus its ranking in search results
+  *  Not limited to such homogeneous data
+     * for example Facebook maintains a single graph with many different types of vertices and edges: vertices represent people, locations, events, checkins, and comments made by users; edges indicate which people are friends with each other, which checkin happened in which location, who commented on which post, who attended which event
+  
+Declarative Query languages 
+===========================
+ * Declarative languages often lend themselves to parallel execution. Today, CPUs are getting faster by adding more cores, not by running at significantly higher clock speeds than before. Imperative code is very hard to parallelize across multiple cores and multiple machines, because it specifies instructions that must be performed in a particular order. Declarative languages have a better chance of getting faster in parallel execution because they specify only the pattern of the results, not the algorithm that is used to determine the results. The database is free to use a parallel implementation of the query language, if appropriate
+ * In a web browser, using declarative CSS styling is much better than manipulating styles imperatively in JavaScript. Similarly, in databases, declarative query languages like SQL turned out to be much better than imperative query APIs
+ * MapReduce is a fairly low-level programming model for distributed execution on a cluster of machines. Higher-level query languages like SQL can be implemented as a pipeline of MapReduce operations. There is nothing in SQL that constrains it to running on a single machine, and MapReduce doesn’t have a monopoly on distributed query execution
+ * SQL, MapReduce, MongoDB’s aggregation pipeline, Cypher, SPARQL, and Datalog
+
