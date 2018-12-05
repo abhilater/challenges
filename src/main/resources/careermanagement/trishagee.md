@@ -54,13 +54,16 @@ Staying Put
 
 Visibility Part 1
 =================
+"I am a good person and I am amazing at what I am doing" will not be enough to the right person to see you for a promotion. You need to deliberately make it happen.
+
+ I think that having an open-ended path will lead to a less routine and more enjoyable career path. This is where "Be expert enough on what you need to know" saying. Also, as an engineer, if you know how to research, solve problems, learn, and improve, then what technology you are using become less relevant in your software craftsmanship. Otherwise, if you lack these important skills, what you think you know in your technology stack is more like a memorization what you have read instead of internalization of them. A software craftsman should be able to jump into any technology stack and start exploring, using, and solving problems with it in a reasonable amount of time. Because they know how to learn and internalize what they are learning, which is, as opposed to the popular belief, is more important than any attempts to become an expert in one specific field.
 * In house extra-curricular activities like Lightning talks, Dev conferences, pet projects, open source
 * The Pub - Network more
 * High visibility project
 * Getting promoted 
-  * Know the system
-  * Keep records
-  * Pick your friends wisely
+  * Know the system - Influence the right people
+  * Keep records of you have accomplished for the last year. Otherwise, you forgot your accomplishments and what you list is usually from the last a couple of months.
+  * Pick your friends wisely. Becoming a friend with a manager may influence his/her moral judgement when they choose whom to promote
 
 Visibility Part 2
 ====================
