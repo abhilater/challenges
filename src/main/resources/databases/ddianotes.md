@@ -1,5 +1,15 @@
 Designing data-intensive applications Notes
 ============================================
+- [Introduction](#introduction)
+- [Reliability](#reliability)
+  - [Human errors](#human-errors)
+- [Scalability](#scalability)
+- [Maintainability](#maintainability)
+  - [Operability](#operability)
+  - [Simplicity](#simplicity)
+    - [Symptoms of Complexity](#symptoms-of-complexity)
+  - [Evolvability](#evolvability)
+- [Security & Compliance](#security---compliance)
 
 Introduction
 ==============
@@ -16,7 +26,7 @@ System should work correctly in face of adversity
 Human errors
 ============
 * Design systems in a way that minimizes opportunities for error. For example, well-designed abstractions, APIs, and admin interfaces make it easy to do “the right thing” and discourage “the wrong thing.”
-* Decouple the places where people make the most mistakes from the places where they can cause failures.  sandbox environments
+* Decouple the places where people make the most mistakes from the places where they can cause failures. eg sandbox environments
 * Test thoroughly at all levels, from unit tests to whole-system integration tests and manual tests and automated test for covering corner cases that rarely arise in normal operation.
 * Allow quick and easy recovery from human errors, to minimize the impact in the case of a failure. For example, make it fast to roll back configuration changes,
 * Set up detailed and clear monitoring, such as performance metrics and error rate
@@ -26,7 +36,8 @@ Scalability
 ============
 Scalability is the term we use to describe a system’s ability to cope with increased load.
 
-Excerpt From: Kleppmann, Martin. “Designing Data-Intensive Applications.” iBooks. 
+* Define load and performance quantitatively
+
 > LATENCY AND RESPONSE TIME
 Latency and response time are often used synonymously, but they are not the same. The response time is what the client sees: besides the actual time to process the request (the service time), it includes network delays and queueing delays. Latency is the duration that a request is waiting to be handled—during which it is latent, awaiting service
 
@@ -37,24 +48,44 @@ Latency and response time are often used synonymously, but they are not the same
 > The architecture of systems that operate at large scale is usually highly specific to the application—there is no such thing as a generic, one-size-fits-all scalable architecture (informally known as magic scaling sauce). The problem may be the volume of reads, the volume of writes, the volume of data to store, the complexity of the data, the response time requirements, the access patterns, or (usually) some mixture of all of these plus many more issues.
 For example, a system that is designed to handle 100,000 requests per second, each 1 kB in size, looks very different from a system that is designed for 3 requests per minute, each 2 GB in size—even though the two systems have the same data throughput
 
+Demo Twitter Case Study - Page #41
+
 Maintainability
 ================
 > It is well known that the majority of the cost of software is not in its initial development, but in its ongoing maintenance—fixing bugs, keeping its systems operational, investigating failures, adapting it to new platforms, modifying it for new use cases, repaying technical debt, and adding new features
 
 Operability
 ============
-“Make it easy for operations teams to keep the system running smoothly.”
+* Make it easy for operations teams to keep the system running smoothly.
+* Good visibility into the system’s health, and having effective ways of managing it
 
 Simplicity
 ===========
-“Make it easy for new engineers to understand the system, by removing as much complexity as possible from the system.”
+Make it easy for new engineers to understand the system, by removing as much complexity as possible from the system.
+> “Good abstractions can help reduce complexity”
+
+Symptoms of Complexity
+======================
+Accidental complexity - if it is not inherent in the problem that the software solves (as seen by the users) but arises only from the implementation
+* Explosion of state space
+* Tight coupling of modules and tangled dependencies
+* Inconsistent naming and terminology
+* Hacks to solve performance problems
+* Special casing to workaround issues elsewhere
+
+Best tool for removing complexity is **Abstraction** .
+> For example, high-level programming languages are abstractions that hide machine code, CPU registers, and syscalls. SQL is an abstraction that hides complex on-disk and in-memory data structures, concurrent requests from other clients, and inconsistencies after crashes. Of course, when programming in a high-level language, we are still using machine code; we are just not using it directly, because the programming language abstraction saves us from having to think about it.
+
 
 Evolvability
 =============
-“Make it easy for engineers to make changes to the system in the future, adapting it for unanticipated use cases as requirements change”
+Make it easy for engineers to make changes to the system in the future, adapting it for unanticipated use cases as requirements change
+* Agile - framework for adapting to change - tools like TDD and Refactoring
+* Most discussions of Agile techniques focus on small, local scale (a couple of source code files within the same application
+* Ways to be agile on level of large data systems eg “example, how would you “refactor” Twitter’s architecture for assembling home timelines (“Describing Load”) from approach 1 to approach 2”
 
-Excerpt From: Kleppmann, Martin. “Designing Data-Intensive Applications.” iBooks. 
-
+Security & Compliance
+=====================
 
 
 
