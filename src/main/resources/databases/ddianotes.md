@@ -76,7 +76,6 @@ Accidental complexity - if it is not inherent in the problem that the software s
 Best tool for removing complexity is **Abstraction** .
 > For example, high-level programming languages are abstractions that hide machine code, CPU registers, and syscalls. SQL is an abstraction that hides complex on-disk and in-memory data structures, concurrent requests from other clients, and inconsistencies after crashes. Of course, when programming in a high-level language, we are still using machine code; we are just not using it directly, because the programming language abstraction saves us from having to think about it.
 
-
 Evolvability
 =============
 Make it easy for engineers to make changes to the system in the future, adapting it for unanticipated use cases as requirements change
@@ -87,5 +86,37 @@ Make it easy for engineers to make changes to the system in the future, adapting
 Security & Compliance
 =====================
 
+Data Models & Query Languages
+=============================
+* Most applications built - Layering one data model on top of another, different levels of abstraction
+* App devs look at real world and model them as objects and data-structures and APIs to manipulate them
+  * Complex apps have various intermediate levels, APIs built upon APIs
+  * Each abstraction layer hides the complexity of the layers below it using a clean data model
+* Storing these data using general purpose data models like JSON, XML, Tables in relational databases, graph model
+* Engineers decide how to serialize these data in memory/disk/network to query/search/modify it in various ways
+* Hardware engineers decide how to represet bytes as electrical currents, pulses of light, magnetic field etc
 
+Document(Hierarchical)/ Relational(SQL)/ Network(similar to Graph) Models
+==========================================================================
 
+* Document model - schema flexibility, better performance due to locality, and that for some applications it is closer to the data structures used by the application
+  * If data has a document-like structure (i.e., a tree of one-to-many relationships, where typically the entire tree is loaded at once), then it’s probably a good idea to use a document model
+  * The relational technique of splitting a document-like structure into multiple tables (like positions, education, and contact_info lead to cumbersome schemas and unnecessarily complicated application code.
+  * Poor support for joins in document databases may or may not be a problem, depending on the application eg Analytics
+  * Application code needs to do additional work to keep the denormalized data consistent
+  * Joins can be emulated in application code by making multiple requests to the database, but that also moves complexity into the application and is usually slower than a join performed by specialized code inside the database
+  * **Schema-on-read** is similar to dynamic (runtime) type checking in programming languages
+  ```java
+  if (user && user.name && !user.first_name) {
+    // Documents written before Dec 8, 2013 don't have first_name
+    user.first_name = user.name.split(" ")[0];} 
+  ```
+
+* The relational model counters by providing better support for joins, and many-to-one and many-to-many relationships.
+  * For highly interconnected data, the document model is awkward, the relational model is acceptable, and graph models are natural
+  * **Schema-on-write** is similar to static (compile-time) type checking
+  ```java
+   ALTER TABLE users ADD COLUMN first_name text;
+   UPDATE users SET first_name = split_part(name, ' ', 1);      -- PostgreSQL”
+  ```
+ 
