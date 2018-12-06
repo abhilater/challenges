@@ -212,6 +212,10 @@ B-Tree
 * The number of ref child pages in 1 page - **Branching factor of B-Tree**
 * In practice, the branching factor depends on the amount of space required to store the page references and the range boundaries, but typically it is several hundred.
 * If you want to update the value for an existing key in a B-tree, you search for the leaf page containing that key, change the value in that page, and write the page back to disk (any references to that page remain valid). If you want to add a new key, you need to find the page whose range encompasses the new key and add it to that page. If there isn’t enough free “space in the page to accommodate the new key, it is split into two half-full pages, and the parent page is updated to account for the new subdivision of key ranges
-* **A four-level tree of 4 KB pages with a branching factor of 500 can store up to 256 TB
+* **A four-level tree of 4 KB pages with a branching factor of 500 can store up to 256 TB**
 ![Imgur](https://i.imgur.com/8TrnxgHl.png)
+
 ![Imgur](https://i.imgur.com/9f3b6Opl.png)
+
+[B-Tree Detail design](./btreewriteinplace.md)
+      
