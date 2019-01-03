@@ -20,7 +20,7 @@ RDDs
 * Each HDFS file block becomes an RDD partition
 * By default output parition number is same after filter/map ops
 * We can repartition/coalesce to remove empty partitions/get the partitions count right. Also override default number of partitions eg HDFS -> no of blocks
-* All ops except Action ops are lazy it keeps on creating DAG metadata (this RDD depends on this RDD depends on this ..)
+* All ops except Action ops are lazy (Transformation) it keeps on creating DAG metadata (this RDD depends on this RDD depends on this ..)
 * When you call Action like collect, the DAG executes (collect action sends result to Driver JVM usually 1 GB)
 ![Imgur](https://i.imgur.com/lMCTffnl.png)
 ![Imgur](https://i.imgur.com/mWsZ22ql.png)
