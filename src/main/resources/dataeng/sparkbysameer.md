@@ -24,3 +24,6 @@ RDDs
 * When you call Action like collect, the DAG executes (collect action sends result to Driver JVM usually 1 GB)
 ![Imgur](https://i.imgur.com/lMCTffnl.png)
 ![Imgur](https://i.imgur.com/mWsZ22ql.png)
+
+https://www.youtube.com/watch?v=7ooZ4S7Ay6Y
+
